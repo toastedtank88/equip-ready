@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equip — Field & Logistics Supply</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red: #C0392B; --red-light: #fde8e8; --red-dark: #993C1D;
+      --text: #1a1a1a; --text-muted: #6b6b6b; --text-hint: #9b9b9b;
+      --bg: #ffffff; --bg-surface: #f7f6f3;
+      --border: rgba(0,0,0,0.10); --border-strong: rgba(0,0,0,0.20);
+      --radius: 12px; --radius-sm: 8px;
+    }
+    html { font-size: 16px; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; border-bottom: 0.5px solid var(--border); position: sticky; top: 0; background: var(--bg); z-index: 100; }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-icon { width: 32px; height: 32px; }
+    .logo-text { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--text); letter-spacing: -0.02em; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { font-size: 14px; color: var(--text-muted); transition: color 0.15s; }
+    .nav-links a:hover { color: var(--text); }
+    .hero { text-align: center; padding: 88px 48px 72px; max-width: 1100px; margin: 0 auto; }
+    .eyebrow { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 20px; }
+    .hero h1 { font-family: 'DM Serif Display', serif; font-size: 52px; font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--text); max-width: 620px; margin: 0 auto 20px; }
+    .hero-sub { font-size: 17px; color: var(--text-muted); max-width: 460px; margin: 0 auto 56px; line-height: 1.65; font-weight: 300; }
+    .path-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 760px; margin: 0 auto; }
+    .path-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 36px 32px; text-align: left; transition: border-color 0.2s, transform 0.15s; cursor: pointer; }
+    .path-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+    .path-card.featured { border: 1.5px solid var(--red); }
+    .path-card.featured:hover { border-color: var(--red-dark); }
+    .path-badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 99px; margin-bottom: 20px; letter-spacing: 0.04em; }
+    .path-badge.b2b { background: var(--red-light); color: var(--red-dark); }
+    .path-badge.b2c { background: var(--bg-surface); color: var(--text-muted); }
+    .path-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+    .path-card h2 { font-family: 'DM Serif Display', serif; font-size: 22px; font-weight: 400; color: var(--text); margin-bottom: 10px; letter-spacing: -0.01em; }
+    .path-card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px; font-weight: 300; }
+    .path-features { list-style: none; margin-bottom: 28px; display: flex; flex-direction: column; gap: 10px; }
+    .path-features li { font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+    .path-features li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+    .btn { display: block; width: 100%; padding: 13px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; border: none; transition: opacity 0.15s, transform 0.1s; text-align: center; }
+    .btn:hover { opacity: 0.88; }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary { background: var(--red); color: #fff; }
+    .btn-secondary { background: var(--bg-surface); color: var(--text); border: 0.5px solid var(--border); }
+    .divider { border: none; border-top: 0.5px solid var(--border); margin: 0 48px; }
+    .about { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; padding: 72px 48px; max-width: 1100px; margin: 0 auto; }
+    .about-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-hint); margin-bottom: 14px; }
+    .about h2 { font-family: 'DM Serif Display', serif; font-size: 30px; font-weight: 400; color: var(--text); line-height: 1.25; margin-bottom: 16px; letter-spacing: -0.01em; }
+    .about p { font-size: 15px; color: var(--text-muted); line-height: 1.7; font-weight: 300; }
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .stat { background: var(--bg-surface); border-radius: var(--radius-sm); padding: 22px 20px; }
+    .stat-num { font-family: 'DM Serif Display', serif; font-size: 26px; font-weight: 400; color: var(--text); margin-bottom: 4px; }
+    .stat-label { font-size: 12px; color: var(--text-hint); font-weight: 300; }
+    footer { padding: 24px 48px; border-top: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .footer-text { font-size: 13px; color: var(--text-hint); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 13px; color: var(--text-hint); transition: color 0.15s; }
+    .footer-links a:hover { color: var(--text-muted); }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .hero { animation: fadeUp 0.5s ease both; }
+    .path-card:nth-child(1) { animation: fadeUp 0.5s 0.1s ease both; }
+    .path-card:nth-child(2) { animation: fadeUp 0.5s 0.2s ease both; }
+    @media (max-width: 720px) {
+      nav { padding: 16px 24px; }
+      .hero { padding: 56px 24px 48px; }
+      .hero h1 { font-size: 36px; }
+      .path-grid { grid-template-columns: 1fr; }
+      .about { grid-template-columns: 1fr; gap: 40px; padding: 48px 24px; }
+      .divider { margin: 0 24px; }
+      footer { padding: 20px 24px; flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 8 L26 8 L18 18 L26 28 L6 28 Z" fill="#C0392B"/>
+        <path d="M6 8 L26 8 L18 18 L6 18 Z" fill="#E74C3C"/>
+      </svg>
+      <span class="logo-text">equip</span>
+    </div>
+    <div class="nav-links">
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+  </nav>
+  <section class="hero">
+    <span class="eyebrow">Logistics &amp; field ops supply</span>
+    <h1>Everything your team needs to show up ready.</h1>
+    <p class="hero-sub">Truck supplies, dock equipment, branded apparel, and field kits — sourced and shipped fast. Whether you're outfitting a fleet or stocking up personally.</p>
+    <div class="path-grid">
+      <div class="path-card featured">
+        <span class="path-badge b2b">Business accounts</span>
+        <span class="path-icon">🏭</span>
+        <h2>I'm buying for my team</h2>
+        <p>Account pricing, Quick Order portal, and same/next day fulfillment for logistics and field operations teams.</p>
+        <ul class="path-features">
+          <li>Account-level pricing</li>
+          <li>No order minimums</li>
+          <li>Quick reorder portal</li>
+          <li>Dedicated account support</li>
+        </ul>
+        <a href="b2b.html" class="btn btn-primary">Log in or request access</a>
+      </div>
+      <div class="path-card">
+        <span class="path-badge b2c">Personal orders</span>
+        <span class="path-icon">🧰</span>
+        <h2>I'm buying for myself</h2>
+        <p>Browse the full catalog and order what you need — no account required. Ships same or next day.</p>
+        <ul class="path-features">
+          <li>No account needed</li>
+          <li>Same / next day shipping</li>
+          <li>14-day returns</li>
+          <li>Full product catalog</li>
+        </ul>
+        <a href="https://equipfulfillment.com" class="btn btn-secondary">Shop the catalog</a>
+      </div>
+    </div>
+  </section>
+  <hr class="divider">
+  <section class="about">
+    <div>
+      <p class="about-eyebrow">Who we are</p>
+      <h2>Built by people who've run field operations.</h2>
+      <p>Equip started as the supply arm of a logistics company. We know what it takes to keep crews in the field — the right gear, on time, without the runaround. That's still what we do, for teams of any size.</p>
+    </div>
+    <div class="stat-grid">
+      <div class="stat"><p class="stat-num">Same day</p><p class="stat-label">Most orders ship same day</p></div>
+      <div class="stat"><p class="stat-num">No min.</p><p class="stat-label">Order what you need</p></div>
+      <div class="stat"><p class="stat-num">14 days</p><p class="stat-label">Full refund window</p></div>
+      <div class="stat"><p class="stat-num">B2B first</p><p class="stat-label">Built for ops teams</p></div>
+    </div>
+  </section>
+  <footer>
+    <span class="footer-text">© 2026 Equip</span>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+    </div>
+  </footer>
+</body>
+</html>

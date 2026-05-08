@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equip — Business Accounts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red: #C0392B; --red-light: #fde8e8; --red-dark: #993C1D;
+      --text: #1a1a1a; --text-muted: #6b6b6b; --text-hint: #9b9b9b;
+      --bg: #ffffff; --bg-surface: #f7f6f3;
+      --border: rgba(0,0,0,0.10); --border-strong: rgba(0,0,0,0.20);
+      --radius: 12px; --radius-sm: 8px;
+    }
+    html { font-size: 16px; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg-surface); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    a { color: inherit; text-decoration: none; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; border-bottom: 0.5px solid var(--border); background: var(--bg); }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-icon { width: 28px; height: 28px; }
+    .logo-text { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--text); letter-spacing: -0.02em; }
+    .nav-back { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-muted); transition: color 0.15s; }
+    .nav-back:hover { color: var(--text); }
+    .nav-back svg { width: 16px; height: 16px; }
+    main { max-width: 520px; margin: 0 auto; padding: 56px 24px 80px; }
+    .page-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; display: block; }
+    .page-title { font-family: 'DM Serif Display', serif; font-size: 34px; font-weight: 400; color: var(--text); letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 8px; }
+    .page-sub { font-size: 15px; color: var(--text-muted); font-weight: 300; margin-bottom: 40px; }
+    .card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 32px; margin-bottom: 16px; }
+    .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+    .card-label { font-size: 13px; font-weight: 500; color: var(--text); }
+    .card-badge { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 99px; }
+    .badge-existing { background: var(--bg-surface); color: var(--text-muted); }
+    .badge-new { background: var(--red-light); color: var(--red-dark); }
+    .field { margin-bottom: 16px; }
+    label { display: block; font-size: 13px; font-weight: 500; color: var(--text-muted); margin-bottom: 6px; }
+    input[type="email"], input[type="password"], input[type="text"], input[type="tel"], textarea, select {
+      width: 100%; padding: 11px 14px; border: 0.5px solid var(--border-strong); border-radius: var(--radius-sm);
+      font-size: 14px; font-family: 'DM Sans', sans-serif; font-weight: 400; color: var(--text);
+      background: var(--bg); transition: border-color 0.15s, box-shadow 0.15s; outline: none; appearance: none;
+    }
+    input:focus, textarea:focus, select:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(192,57,43,0.08); }
+    textarea { resize: vertical; min-height: 88px; line-height: 1.5; }
+    select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b6b6b' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .btn { display: block; width: 100%; padding: 13px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; border: none; transition: opacity 0.15s, transform 0.1s; text-align: center; }
+    .btn:hover { opacity: 0.88; }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary { background: var(--red); color: #fff; }
+    .btn-secondary { background: transparent; color: var(--text); border: 0.5px solid var(--border-strong); }
+    .forgot-link { display: block; text-align: right; font-size: 12px; color: var(--text-hint); margin-top: -8px; margin-bottom: 20px; transition: color 0.15s; }
+    .forgot-link:hover { color: var(--text-muted); }
+    .section-divider { display: flex; align-items: center; gap: 12px; margin: 8px 0 24px; }
+    .section-divider::before, .section-divider::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
+    .section-divider span { font-size: 11px; color: var(--text-hint); letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+    .contact-line { margin-top: 20px; padding-top: 20px; border-top: 0.5px solid var(--border); text-align: center; }
+    .contact-line p { font-size: 13px; color: var(--text-hint); }
+    .contact-line a { color: var(--red); font-weight: 500; transition: opacity 0.15s; }
+    .contact-line a:hover { opacity: 0.75; }
+    .success-state { display: none; text-align: center; padding: 40px 24px; }
+    .success-icon { width: 48px; height: 48px; background: #e8f5e9; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+    .success-icon svg { width: 24px; height: 24px; }
+    .success-state h3 { font-family: 'DM Serif Display', serif; font-size: 22px; font-weight: 400; color: var(--text); margin-bottom: 8px; }
+    .success-state p { font-size: 14px; color: var(--text-muted); font-weight: 300; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .card:nth-child(1) { animation: fadeUp 0.4s 0.05s ease both; }
+    .card:nth-child(2) { animation: fadeUp 0.4s 0.15s ease both; }
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      main { padding: 40px 16px 64px; }
+      .card { padding: 24px 20px; }
+      .field-row { grid-template-columns: 1fr; }
+      .page-title { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 8 L26 8 L18 18 L26 28 L6 28 Z" fill="#C0392B"/>
+        <path d="M6 8 L26 8 L18 18 L6 18 Z" fill="#E74C3C"/>
+      </svg>
+      <span class="logo-text">equip</span>
+    </div>
+    <a href="index.html" class="nav-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back
+    </a>
+  </nav>
+  <main>
+    <span class="page-eyebrow">Business accounts</span>
+    <h1 class="page-title">Log in or request access.</h1>
+    <p class="page-sub">Existing customers log in below. New to Equip? Request an account and we'll be in touch within one business day.</p>
+    <div class="card" id="login-card">
+      <div class="card-header">
+        <span class="card-label">Existing customers</span>
+        <span class="card-badge badge-existing">Log in</span>
+      </div>
+      <div class="field">
+        <label for="email">Work email</label>
+        <input type="email" id="email" placeholder="you@company.com" autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="••••••••" autocomplete="current-password">
+      </div>
+      <a href="#" class="forgot-link">Forgot password?</a>
+      <button class="btn btn-primary" onclick="window.location.href='https://shop.equipfulfillment.com'">Log in to your account</button>
+    </div>
+    <div class="section-divider"><span>or</span></div>
+    <div class="card" id="request-card">
+      <div class="card-header">
+        <span class="card-label">New customers</span>
+        <span class="card-badge badge-new">Request access</span>
+      </div>
+      <div id="request-form">
+        <div class="field-row">
+          <div class="field">
+            <label for="first-name">First name</label>
+            <input type="text" id="first-name" placeholder="Jane">
+          </div>
+          <div class="field">
+            <label for="last-name">Last name</label>
+            <input type="text" id="last-name" placeholder="Smith">
+          </div>
+        </div>
+        <div class="field">
+          <label for="req-email">Work email</label>
+          <input type="email" id="req-email" placeholder="you@company.com">
+        </div>
+        <div class="field">
+          <label for="company">Company name</label>
+          <input type="text" id="company" placeholder="Acme Logistics">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="phone">Phone (optional)</label>
+            <input type="tel" id="phone" placeholder="(555) 000-0000">
+          </div>
+          <div class="field">
+            <label for="team-size">Team size</label>
+            <select id="team-size">
+              <option value="" disabled selected>Select...</option>
+              <option>1–10</option>
+              <option>11–50</option>
+              <option>51–200</option>
+              <option>200+</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="needs">What do you primarily need? (optional)</label>
+          <textarea id="needs" placeholder="e.g. truck supplies, branded apparel, dock equipment…"></textarea>
+        </div>
+        <button class="btn btn-primary" onclick="submitRequest()">Request a business account</button>
+        <div class="contact-line">
+          <p>Prefer to talk? Email us at <a href="mailto:accounts@equipfulfillment.com">accounts@equipfulfillment.com</a></p>
+        </div>
+      </div>
+      <div class="success-state" id="success-state">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h3>Request received.</h3>
+        <p>We'll review your information and follow up within one business day.</p>
+      </div>
+    </div>
+  </main>
+  <script>
+    function submitRequest() {
+      const email = document.getElementById('req-email').value;
+      const company = document.getElementById('company').value;
+      const firstName = document.getElementById('first-name').value;
+      if (!firstName || !email || !company) {
+        [{ el: document.getElementById('first-name'), val: firstName },
+         { el: document.getElementById('req-email'), val: email },
+         { el: document.getElementById('company'), val: company }
+        ].forEach(f => { f.el.style.borderColor = !f.val ? '#C0392B' : ''; });
+        return;
+      }
+      document.getElementById('request-form').style.display = 'none';
+      document.getElementById('success-state').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
