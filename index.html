@@ -35,7 +35,7 @@
     .hero h1 { font-family: 'DM Serif Display', serif; font-size: 48px; font-weight: 400; line-height: 1.15; letter-spacing: -0.02em; color: var(--text); max-width: 580px; margin: 0 auto 18px; }
     .hero-sub { font-size: 16px; color: var(--text-muted); max-width: 460px; margin: 0 auto 52px; line-height: 1.65; font-weight: 300; }
     .path-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 720px; margin: 0 auto; }
-    .path-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 32px 28px; text-align: left; transition: border-color 0.2s, transform 0.15s; }
+    .path-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 32px 28px; text-align: left; transition: border-color 0.2s, transform 0.15s; display: flex; flex-direction: column; }
     .path-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
     .path-card.featured { border: 1.5px solid var(--red); }
     .path-badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 99px; margin-bottom: 18px; }
@@ -43,7 +43,7 @@
     .path-badge.b2c { background: var(--bg-surface); color: var(--text-muted); }
     .path-card h2 { font-family: 'DM Serif Display', serif; font-size: 21px; font-weight: 400; color: var(--text); margin-bottom: 8px; }
     .path-card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; font-weight: 300; }
-    .path-features { list-style: none; margin-bottom: 24px; display: flex; flex-direction: column; gap: 8px; }
+    .path-features { list-style: none; margin-bottom: 24px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
     .path-features li { font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
     .path-features li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
     .value-section { padding: 72px 48px; max-width: 1100px; margin: 0 auto; }
