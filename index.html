@@ -204,6 +204,25 @@
     </div>
   </section>
 
+  <hr class="section-divider">
+
+  <section style="padding: 72px 48px; text-align: center;">
+    <span class="section-eyebrow" style="color:var(--red);">Get started</span>
+    <h2 style="font-family:'DM Serif Display',serif;font-size:30px;font-weight:400;color:var(--text);margin-bottom:12px;">Ready to set up a business account?</h2>
+    <p style="font-size:15px;color:var(--text-muted);font-weight:300;max-width:400px;margin:0 auto 40px;">Drop your info and we'll reach out to get you set up.</p>
+    <div id="cta-form" style="display:flex;flex-direction:column;gap:12px;max-width:360px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <input type="text" id="cta-first" placeholder="First name" style="padding:11px 14px;border:0.5px solid var(--border-strong);border-radius:var(--radius-sm);font-size:14px;font-family:'DM Sans',sans-serif;color:var(--text);background:var(--bg);outline:none;">
+        <input type="text" id="cta-last" placeholder="Last name" style="padding:11px 14px;border:0.5px solid var(--border-strong);border-radius:var(--radius-sm);font-size:14px;font-family:'DM Sans',sans-serif;color:var(--text);background:var(--bg);outline:none;">
+      </div>
+      <input type="email" id="cta-email" placeholder="Work email" style="padding:11px 14px;border:0.5px solid var(--border-strong);border-radius:var(--radius-sm);font-size:14px;font-family:'DM Sans',sans-serif;color:var(--text);background:var(--bg);outline:none;">
+      <button onclick="submitCTA()" style="padding:13px;background:var(--red);color:#fff;border:none;border-radius:var(--radius-sm);font-size:14px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;">Get in touch</button>
+    </div>
+    <div id="cta-success" style="display:none;padding:32px;max-width:360px;margin:0 auto;">
+      <p style="font-size:15px;color:var(--text-muted);font-weight:300;">Thanks! We'll be in touch within one business day.</p>
+    </div>
+  </section>
+
   <footer>
     <span class="footer-text">© 2026 Equip</span>
     <div class="footer-links">
@@ -213,5 +232,24 @@
     </div>
   </footer>
 
+  <script>
+    function submitCTA() {
+      const first = document.getElementById('cta-first').value;
+      const last = document.getElementById('cta-last').value;
+      const email = document.getElementById('cta-email').value;
+      const inputs = [
+        { el: document.getElementById('cta-first'), val: first },
+        { el: document.getElementById('cta-email'), val: email }
+      ];
+      let valid = true;
+      inputs.forEach(f => {
+        if (!f.val) { f.el.style.borderColor = '#C0392B'; valid = false; }
+        else f.el.style.borderColor = '';
+      });
+      if (!valid) return;
+      document.getElementById('cta-form').style.display = 'none';
+      document.getElementById('cta-success').style.display = 'block';
+    }
+  </script>
 </body>
 </html>
